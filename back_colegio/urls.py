@@ -46,6 +46,7 @@ urlpatterns = [
     # PARA LA VISTA DE USUARIO 
     path('add_user/', UserlListView.as_view(), name='user_add_list_view'),
     path('add_user/<int:pk>/', UserDetailView.as_view(), name='user_add_detail_view'),
+    path('add_user/bulk-create/', UserBulkCreateView.as_view(), name='user-bulk-create'),
 
     # PARA LA VISTA DE PARALELO
     path('add_section/', ParaleloListView.as_view(), name='section_add_list_view'),
