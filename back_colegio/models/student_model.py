@@ -6,9 +6,9 @@ from .section_model import Paralelo
 class Estudiante(models.Model):
     usuario = models.OneToOneField(
         Usuario,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
+        on_delete=models.CASCADE,
+        # null=True,
+        # blank=True,
         related_name="perfil_estudiante_usuario"
     )
     paralelo = models.ForeignKey(
