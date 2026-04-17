@@ -3,9 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from .usuario_model import Usuario
 from .student_model import Estudiante
 
-# --------------------------
 # TEST VOCACIONAL
-# --------------------------
 class TestVocacional(models.Model):
     nombre = models.CharField(max_length=200)
     descripcion = models.TextField(blank=True, null=True)
@@ -14,10 +12,7 @@ class TestVocacional(models.Model):
     def __str__(self):
         return self.nombre
 
-
-# --------------------------
 # PREGUNTAS
-# --------------------------
 class Pregunta(models.Model):
 
     test = models.ForeignKey(
@@ -28,10 +23,7 @@ class Pregunta(models.Model):
     def __str__(self):
         return f"Pregunta {self.numero}: {self.texto[:50]}"
 
-
-# --------------------------
 # OPCIONES DE RESPUESTA
-# --------------------------
 class OpcionRespuesta(models.Model):
     pregunta = models.ForeignKey(
         Pregunta, on_delete=models.CASCADE, related_name="opciones")
@@ -42,16 +34,11 @@ class OpcionRespuesta(models.Model):
 
     def __str__(self):
         return f"{self.texto} (Pregunta {self.pregunta.numero})"
+
     class Meta:
-        # ✅ SOLUCIÓN CRÍTICA PARA EL ERROR 400 EN EL POST MASIVO:
-        # La combinación de pregunta y estudiante debe ser única en la DB.
         unique_together = ('pregunta', 'estudiante')
 
-
-
-# --------------------------
 # RESPUESTAS DE ESTUDIANTES
-# --------------------------
 class RespuestaEstudiante(models.Model):
     estudiante = models.ForeignKey(
         Usuario, on_delete=models.CASCADE, related_name="respuestas_es")

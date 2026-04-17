@@ -47,7 +47,7 @@ def crear_perfiles_iniciales(sender, instance, created, **kwargs):
 
 
 # --- Constante para el número total de preguntas ---
-TOTAL_PREGUNTAS = 793
+TOTAL_PREGUNTAS = 824
 
 @receiver(post_save, sender=Token)
 def disparar_prediccion_por_token_personalizado(sender, instance, **kwargs):
